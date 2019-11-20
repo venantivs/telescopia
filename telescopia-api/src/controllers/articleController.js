@@ -108,7 +108,7 @@ mongoose.model('Articles', articleSchema)
 exports.newArticle = (req, res, next) => {
     const saveArticleSchema = mongoose.model('Articles')
 
-    new saveArticleSchema(req.query)
+    new saveArticleSchema(req.body)
     .save()
     .then(() => {
         res.status(200).send({ status: 'success', message: 'Notícia cadastrada com sucesso!' })
