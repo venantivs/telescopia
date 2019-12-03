@@ -68,6 +68,10 @@ const articleSchema = mongoose.Schema({
         type: Date,
         required: true
     },
+    section: {
+        type: String,
+        required: true
+    },
     title: {
         type: String,
         required: true
