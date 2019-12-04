@@ -1,14 +1,5 @@
 const mongoose = require('mongoose')
 
-mongoose.Promise = global.Promise
-mongoose.connect('mongodb://localhost/telescopia-db', { useNewUrlParser: true, useUnifiedTopology: true })
-        .then(() => {
-            console.log('Conexão com o MongoDB feita com sucesso.')
-        })
-        .catch((error) => {
-            console.log('Houve um erro ao se conectar ao MongoDB: ' + error)
-        })
-
 const indicatorSchema = mongoose.Schema({
     facebook: {
         likes: {
@@ -101,19 +92,33 @@ exports.newArticle = (req, res, next) => {
 }
 
 exports.getAllArticles = (req, res, next) => {
-    res.status(200).send({ status: 'failure', message: 'Ainda não implementado.' })
+    articleModel.find({}, (err, articles) => {
+        if (err) {
+            res.status(200).send({ status: 'failure' })
+            console.log(err)
+        } else
+            res.status(200).send({ status: 'success', message: articles })
+    })
 }
 
-exports.getArticle = (req, res, next) => {
+exports.getArticleById = (req, res, next) => {
     let id = req.params.id
-    res.status(200).send({ status: 'failure', message: `Ainda não implementado. ${id}` })
+    articleModel.findById(id, (err, article) => {
+        if (err) {
+            res.status(200).send({ status: 'failure' })
+            console.log(err)
+        } else
+            res.status(200).send({ status: 'success', message: article })
+    })
 }
 
 exports.getNumberOfArticles = (req, res, next) => {
     articleModel.countDocuments({}, (err, count) => {
-        if (err)
+        if (err) {
             res.status(200).send({ status: 'failure' })
-        else
+            console.log(err)
+        } else {
             res.status(200).send({ status: 'success', count: count })
+        }
     })
 }
