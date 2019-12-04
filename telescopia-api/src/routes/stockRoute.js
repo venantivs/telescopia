@@ -5,6 +5,6 @@ const controller = require('../controllers/stockController')
 router.get('/', controller.getAllStocks)
 router.get('/getStock/:stockName/', controller.getStockByName)
 router.get('/getNumberOfStocks/', controller.getNumberOfStocks)
-router.post('/newStock/', controller.newStock)
+router.put('/newStock/', controller.newStock)
 
 module.exports = router

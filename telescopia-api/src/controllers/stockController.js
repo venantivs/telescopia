@@ -32,7 +32,7 @@ exports.getAllStocks = (req, res, next) => {
 }
 
 exports.getStockByName = (req, res, next) => {
-    let stockName = req.params.stockName;
+    let stockName = req.params.stockName.toUpperCase();
     stockModel.findOne({ name: stockName }, (err, stock) => {
         if (err) {
             res.status(200).send({ status: 'failure' })
