@@ -79,7 +79,6 @@ const articleModel = mongoose.model('Articles', articleSchema)
 
 exports.newArticle = (req, res, next) => {
     const saveArticleSchema = mongoose.model('Articles')
-
     new saveArticleSchema(req.body)
     .save()
     .then(() => {
@@ -109,6 +108,51 @@ exports.getArticleById = (req, res, next) => {
             console.log(err)
         } else
             res.status(200).send({ status: 'success', message: article })
+    })
+}
+
+exports.getArticlesByDate = (req, res, next) => {
+    let date = req.params.date
+    articleModel.find({date: date}, (err, articles) => {
+        if (err) {
+            res.status(200).send({ status: 'failure' })
+            console.log(err)
+        } else
+            res.status(200).send({ status: 'success', message: articles })
+    })
+}
+
+exports.getArticlesByAfterDate = (req, res, next) => {
+    let date = req.params.date
+    articleModel.find({ date: { "$gte": date } }, (err, articles) => {
+        if (err) {
+            res.status(200).send({ status: 'failure' })
+            console.log(err)
+        } else
+            res.status(200).send({ status: 'success', message: articles })
+    })
+}
+
+exports.getArticlesByBeforeDate = (req, res, next) => {
+    let date = req.params.date
+    articleModel.find({ date: { "$lt": date } }, (err, articles) => {
+        if (err) {
+            res.status(200).send({ status: 'failure' })
+            console.log(err)
+        } else
+            res.status(200).send({ status: 'success', message: articles })
+    })
+}
+
+exports.getArticlesByDateRange = (req, res, next) => {
+    let dateLow = req.params.dateLow
+    let dateHigh = req.params.dateHigh
+    articleModel.find({ date: { "$gte": dateLow, "$lt": dateHigh } }, (err, articles) => {
+        if (err) {
+            res.status(200).send({ status: 'failure' })
+            console.log(err)
+        } else
+            res.status(200).send({ status: 'success', message: articles })
     })
 }
 
