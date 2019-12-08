@@ -46,21 +46,27 @@ exports.getStockByName = (req, res, next) => {
 }
 
 exports.newStock = (req, res, next) => {
-    let stockName = req.body.name.toUpperCase();
+    req.body.name = req.body.name.toUpperCase()
+    let stockName = req.body.name
     stockModel.findOne({ name: stockName }, (err, stock) => {
         if (err) {
             res.status(200).send({ status: 'failure' })
             console.log(err)
         } else {
             if (stock) {
-                stockModel.findOneAndUpdate({ name: stockName }, { "$push": { "stats": { "$each": req.body.stats }}}, () => {
-                    res.status(200).send({ status: 'success', message: 'Ação atualizada com sucesso.' })
-                })
-            }
-            else {
-                stockModel.create(req.body, (err, stocks) => {
-                    if (err)
+                stockModel.findOneAndUpdate({ name: stockName }, { "$push": { "stats": { "$each": req.body.stats }}}, (err) => {
+                    if (err) {
+                        res.status(200).send({ status: 'failure', message: 'Não foi possível atualizar a ação.' })
                         console.log(err)
+                    } else
+                        res.status(200).send({ status: 'success', message: 'Ação atualizada com sucesso.' })
+                })
+            } else {
+                stockModel.create(req.body, (err, stocks) => {
+                    if (err) {
+                        res.status(200).send({ status: 'failure', message: 'Não foi possível criar a ação.' })
+                        console.log(err)
+                    }
                     else
                         res.status(200).send({ status: 'success', message: 'Ação inserida com sucesso.' })
                 })
