@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>API - Telescopia</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="css/mdb.min.css" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="css/style.min.css" rel="stylesheet">
+  <style type="text/css">
+    .codebox {
+        background-color: #e8e8e8;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark unique-color-dark">
+    <div class="container">
+
+      <!-- Brand -->
+      <a class="navbar-brand" href="#" target="_blank">
+        <strong>Telescopia</strong>
+      </a>
+
+      <!-- Collapse -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Links -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <!-- Left -->
+        <ul class="navbar-nav mr-auto">
+        </ul>
+
+        <!-- Right -->
+        <ul class="navbar-nav nav-flex-icons">
+          <li class="nav-item mr-2">
+            <a href="index.html" class="nav-link border border-light rounded">
+              <i class="fas fa-home mr-2"></i>Início
+            </a>
+          </li>
+          <li class="nav-item mr-2">
+            <a href="observatory.html" class="nav-link border border-light rounded">
+              <i class="fas fa-satellite mr-2"></i>Observatório
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="" class="nav-link border border-light rounded">
+              <i class="fas fa-code mr-2"></i>API
+            </a>
+          </li>
+        </ul>
+
+      </div>
+
+    </div>
+  </nav>
+  <!-- Navbar -->
+
+    <!-- Full Page Intro -->
+    <div id="app">
+        <div class="container">
+            <div class="my-4">
+                <h5>O telescopia disponibiliza uma API Rest, com Cross-Origin Resource Sharing (CORS) ativado, utilizando o protocolo HTTP para que você mesmo possa manipular os dados em formato JSON, sem interferência deste website.</h5>
+                <div class="codebox p-3 rounded">
+                    GET&nbsp;&nbsp;&nbsp;&nbsp;https://186.194.221.240/
+                </div>
+                <p>Mostra a "introdução" da API, como versão e nome.</p>
+                <div class="codebox p-3 rounded">
+                    {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;"title": "Telescopia API",<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;"version": "0.0.1"<br>
+                    }
+                </div>
+                <br>
+                <p><b>Atenção</b>: Datas são aceitas apenas no formato <b>Y-m-d</b>.</p>
+                <br>
+                <h3><b>Notícias</b></h3>
+                <p>O sufixo <b>/articles/</b> na URL representa a seção de notícias da API.</p>
+                <div class="codebox p-3 rounded">
+                    {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;"status": "success",<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;"message": [<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"_id": "5de7d159e408f077d9bcc22e",<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"url": "https://www.noticias.com.br/noticia/1",<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"title": "Notícia 1",<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"body": "Corpo da notícia 1",<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"date": "2019-11-08T19:32:40.000Z",<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"portal_name": "Portal Notícias",<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"section": "economia",<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"comments": [],<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"__v": 0<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;]<br>
+                    }<br>
+                </div>
+                <p>Exemplo de retorno dado pela API nesta seção.</b></p>
+
+                <div class="codebox p-3 rounded">
+                    GET&nbsp;&nbsp;&nbsp;&nbsp;https://186.194.221.240/articles/
+                </div>
+                <p>Retorna <b>todas</b> as notícias já cadastradas no banco de dados.</p>
+                <div class="codebox p-3 rounded">
+                    GET&nbsp;&nbsp;&nbsp;&nbsp;https://186.194.221.240/articles/getArticle/:id
+                </div>
+                <p>Retorna <b>uma</b> notícia, onde <b>:id</b> deve ser subtituído pelo id da notícia.</p>
+                <div class="codebox p-3 rounded">
+                    GET&nbsp;&nbsp;&nbsp;&nbsp;https://186.194.221.240/articles/getArticlesByDate/:date
+                </div>
+                <p>Retorna <b>todas</b> notícias publicas na data passada em <b>:date</b>.</p>
+                <div class="codebox p-3 rounded">
+                    GET&nbsp;&nbsp;&nbsp;&nbsp;https://186.194.221.240/articles/getArticlesAfter/:date
+                </div>
+                <p>Retorna <b>todas</b> notícias que foram publicadas <b>após</b> a data especificada em <b>:date</b>.</p>
+                <div class="codebox p-3 rounded">
+                    GET&nbsp;&nbsp;&nbsp;&nbsp;https://186.194.221.240/articles/getArticlesBefore/:date
+                </div>
+                <p>Retorna <b>todas</b> notícias que foram publicadas <b>até</b> a data especificada em <b>:date</b>.</p>
+                <div class="codebox p-3 rounded">
+                    GET&nbsp;&nbsp;&nbsp;&nbsp;https://186.194.221.240/articles/getArticlesByDateRange/:dateLow/:dateHigh
+                </div>
+                <p>Retorna <b>todas</b> notícias que foram publicadas <b>entre</b> as datas especificadas em <b>:dateLow</b> e <b>:dateHigh</b>.</p>
+                <div class="codebox p-3 rounded">
+                    GET&nbsp;&nbsp;&nbsp;&nbsp;https://186.194.221.240/articles/getNumberOfArticles/
+                </div>
+                <p>Retorna o número de notícias cadastradas no banco de dados.</p>
+                <br>
+                <h3><b>Ações</b></h3>
+                <p>O sufixo <b>/stocks/</b> na URL dá acesso à seção de ações da API.</p>
+                <div class="codebox p-3 rounded">
+                    {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;"status": "success",<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;"message": {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"_id": "5de7d2fae408f077d9bcc3b7",<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"name": "OIBR3",<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"stats": [<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"_id": "5de7d2fae408f077d9bcc3b8",<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"url": "https://www.infomoney.com.br/mercados/acao-do-bb-sobe-mais-de-1-apos-anuncio-de-oferta-de-acoes-br-distribuidora-avanca-3-com-recomendacao/",<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"date": "2019-10-03T10:32:07.000Z"<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"_id": "5de7d622e408f077d9bccb81",<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"url": "https://www.infomoney.com.br/politica/petista-e-acusado-de-oferecer-propina-a-conselheiro-da-anatel-em-nome-da-oi/",<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"date": "2013-08-26T06:36:00.000Z"<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                    }
+                </div>
+                <p>Exemplo de retorno da API nesta seção.</p>
+                <div class="codebox p-3 rounded">
+                    GET&nbsp;&nbsp;&nbsp;&nbsp;https://186.194.221.240/stocks/
+                </div>
+                <p>Retorna <b>todas</b> ações cadastradas no banco de dados.</p>
+                <div class="codebox p-3 rounded">
+                    GET&nbsp;&nbsp;&nbsp;&nbsp;https://186.194.221.240/stocks/getStock/:stockName
+                </div>
+                <p>Retorna <b>uma</b> ação pelo seu nome especificado em <b>:stockName</b>.</p>
+                <div class="codebox p-3 rounded">
+                    GET&nbsp;&nbsp;&nbsp;&nbsp;https://186.194.221.240/stocks/getNumberOfStocks/
+                </div>
+                <p>Retorna o número de ações cadastradas no banco de dados.</p>
+            </div>
+        </div>
+    </div>
+
+  <!-- Full Page Intro -->
+
+  <!--Footer-->
+  <footer class="page-footer text-center font-small">
+    <!--Copyright-->
+    <div class="footer-copyright py-3">
+      <div class="row">
+        <div class="col-0 col-lg-1"></div>
+        <div class="col-12 col-lg-2">
+          Alexander Cristian
+        </div>
+        <div class="col-12 col-lg-2">
+          José Venâncio
+        </div>
+        <div class="col-12 col-lg-2">
+          Matheus Melo
+        </div>
+        <div class="col-12 col-lg-2">
+          Vitor Freire
+        </div>
+        <div class="col-12 col-lg-2">
+          Yan Victor
+        </div>
+        <div class="col0 col-lg-1"></div>
+      </div>
+    </div>
+    <!--/.Copyright-->
+
+  </footer>
+  <!--/.Footer-->
+
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="js/mdb.min.js"></script>
+  <!-- VueJS -->
+  <script type="text/javascript" src="js/vue.js"></script>
+  <!-- Axios -->
+  <script type="text/javascript" src="js/axios.min.js"></script>
+  <!-- VueJS Script -->
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        
+      }
+    })
+  </script>
+</body>
+
+</html>
