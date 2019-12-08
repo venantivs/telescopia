@@ -112,8 +112,12 @@ exports.getArticleById = (req, res, next) => {
 }
 
 exports.getArticlesByDate = (req, res, next) => {
-    let date = req.params.date
-    articleModel.find({date: date}, (err, articles) => {
+    let dateLow = new Date(req.params.date)
+    let dateHigh = new Date(req.params.date)
+
+    dateHigh.setDate(dateLow.getDate() + 1)
+
+    articleModel.find({ date: { "$gte": dateLow, "$lt": dateHigh } }, (err, articles) => {
         if (err) {
             res.status(200).send({ status: 'failure' })
             console.log(err)
@@ -123,7 +127,7 @@ exports.getArticlesByDate = (req, res, next) => {
 }
 
 exports.getArticlesByAfterDate = (req, res, next) => {
-    let date = req.params.date
+    let date = new Date(req.params.date)
     articleModel.find({ date: { "$gte": date } }, (err, articles) => {
         if (err) {
             res.status(200).send({ status: 'failure' })
@@ -134,7 +138,7 @@ exports.getArticlesByAfterDate = (req, res, next) => {
 }
 
 exports.getArticlesByBeforeDate = (req, res, next) => {
-    let date = req.params.date
+    let date = new Date(req.params.date)
     articleModel.find({ date: { "$lt": date } }, (err, articles) => {
         if (err) {
             res.status(200).send({ status: 'failure' })
@@ -145,8 +149,8 @@ exports.getArticlesByBeforeDate = (req, res, next) => {
 }
 
 exports.getArticlesByDateRange = (req, res, next) => {
-    let dateLow = req.params.dateLow
-    let dateHigh = req.params.dateHigh
+    let dateLow = new Date(req.params.dateLow)
+    let dateHigh = new Date(req.params.dateHigh)
     articleModel.find({ date: { "$gte": dateLow, "$lt": dateHigh } }, (err, articles) => {
         if (err) {
             res.status(200).send({ status: 'failure' })
