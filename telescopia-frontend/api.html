@@ -18,6 +18,10 @@
     .codebox {
         background-color: #e8e8e8;
     }
+
+    .string-color {
+      color: #8c0207;
+    }
   </style>
 </head>
 
@@ -81,8 +85,8 @@
                 <p>Mostra a "introdução" da API, como versão e nome.</p>
                 <div class="codebox p-3 rounded">
                     {<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;"title": "Telescopia API",<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;"version": "0.0.1"<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="string-color">"title"</span>: <span class="string-color">"Telescopia API"</span>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="string-color">"version"</span>: <span class="string-color">"0.0.1"</span><br>
                     }
                 </div>
                 <br>
@@ -92,18 +96,18 @@
                 <p>O sufixo <b>/articles/</b> na URL representa a seção de notícias da API.</p>
                 <div class="codebox p-3 rounded">
                     {<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;"status": "success",<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;"message": [<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="string-color">"status"</span>: <span class="string-color">"success"</span>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="string-color">"message"</span>: [<br>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"_id": "5de7d159e408f077d9bcc22e",<br>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"url": "https://www.noticias.com.br/noticia/1",<br>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"title": "Notícia 1",<br>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"body": "Corpo da notícia 1",<br>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"date": "2019-11-08T19:32:40.000Z",<br>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"portal_name": "Portal Notícias",<br>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"section": "economia",<br>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"comments": [],<br>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"__v": 0<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string-color">"_id"</span>: <span class="string-color">"5de7d159e408f077d9bcc22e"</span>,<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string-color">"url"</span>: <span class="string-color">"https://www.noticias.com.br/noticia/1"</span>,<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string-color">"title"</span>: <span class="string-color">"Notícia 1"</span>,<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string-color">"body"</span>: <span class="string-color">"Corpo da notícia 1"</span>,<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string-color">"date"</span>: <span class="string-color">"2019-11-08T19:32:40.000Z"</span>,<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string-color">"portal_name"</span>: <span class="string-color">"Portal Notícias"</span>,<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string-color">"section"</span>: <span class="string-color">"economia"</span>,<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string-color">"comments"</span>: [],<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string-color">"__v"</span>: 0<br>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
                         &nbsp;&nbsp;&nbsp;&nbsp;]<br>
                     }<br>
@@ -143,20 +147,20 @@
                 <p>O sufixo <b>/stocks/</b> na URL dá acesso à seção de ações da API.</p>
                 <div class="codebox p-3 rounded">
                     {<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;"status": "success",<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;"message": {<br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"_id": "5de7d2fae408f077d9bcc3b7",<br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"name": "OIBR3",<br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"stats": [<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="string-color">"status"</span>: <span class="string-color">"success"</span>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="string-color">"message"</span>: {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string-color">"_id"</span>: <span class="string-color">"5de7d2fae408f077d9bcc3b7"</span>,<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string-color">"name"</span>: <span class="string-color">"OIBR3"</span>,<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string-color">"stats"</span>: [<br>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"_id": "5de7d2fae408f077d9bcc3b8",<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"url": "https://www.infomoney.com.br/mercados/acao-do-bb-sobe-mais-de-1-apos-anuncio-de-oferta-de-acoes-br-distribuidora-avanca-3-com-recomendacao/",<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"date": "2019-10-03T10:32:07.000Z"<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string-color">"_id"</span>: <span class="string-color">"5de7d2fae408f077d9bcc3b8"</span>,<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string-color">"url"</span>: <span class="string-color">"https://www.infomoney.com.br/mercados/acao-do-bb-sobe-mais-de-1-apos-anuncio-de-oferta-de-acoes-br-distribuidora-avanca-3-com-recomendacao/"</span>,<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string-color">"date"</span>: <span class="string-color">"2019-10-03T10:32:07.000Z"</span><br>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},<br>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"_id": "5de7d622e408f077d9bccb81",<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"url": "https://www.infomoney.com.br/politica/petista-e-acusado-de-oferecer-propina-a-conselheiro-da-anatel-em-nome-da-oi/",<br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"date": "2013-08-26T06:36:00.000Z"<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string-color">"_id"</span>: <span class="string-color">"5de7d622e408f077d9bccb81"</span>,<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string-color">"url"</span>: <span class="string-color">"https://www.infomoney.com.br/politica/petista-e-acusado-de-oferecer-propina-a-conselheiro-da-anatel-em-nome-da-oi/"</span>,<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string-color">"date"</span>: <span class="string-color">"2013-08-26T06:36:00.000Z"</span><br>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]<br>
                         &nbsp;&nbsp;&nbsp;&nbsp;}<br>
