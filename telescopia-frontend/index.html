@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Telescopia</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="css/mdb.min.css" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="css/style.min.css" rel="stylesheet">
+  <style type="text/css">
+    html,
+    body,
+    header,
+    .view {
+      height: 100%;
+    }
+
+    @media (max-width: 559px) {
+
+      html,
+      body,
+      header,
+      .view {
+        height: 1000px;
+      }
+    }
+
+    @media (min-width: 560px) and (max-width: 740px) {
+
+      html,
+      body,
+      header,
+      .view {
+        height: 700px;
+      }
+    }
+
+    @media (min-width: 800px) and (max-width: 850px) {
+
+      html,
+      body,
+      header,
+      .view {
+        height: 600px;
+      }
+    }
+
+    @media (min-width: 800px) and (max-width: 850px) {
+      .navbar:not(.top-nav-collapse) {
+        background: #1C2331 !important;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+    <div class="container">
+
+      <!-- Brand -->
+      <a class="navbar-brand" href="#" target="_blank">
+        <strong>Telescopia</strong>
+      </a>
+
+      <!-- Collapse -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Links -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <!-- Left -->
+        <ul class="navbar-nav mr-auto">
+        </ul>
+
+        <!-- Right -->
+        <ul class="navbar-nav nav-flex-icons">
+          <li class="nav-item mr-2">
+            <a href="/" class="nav-link border border-light rounded"
+              target="_blank">
+              <i class="fas fa-home mr-2"></i>Início
+            </a>
+          </li>
+          <li class="nav-item mr-2">
+            <a href="observatory.html" class="nav-link border border-light rounded"
+              target="_blank">
+              <i class="fas fa-satellite mr-2"></i>Observatório
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="api.html" class="nav-link border border-light rounded"
+              target="_blank">
+              <i class="fas fa-code mr-2"></i>API
+            </a>
+          </li>
+        </ul>
+
+      </div>
+
+    </div>
+  </nav>
+  <!-- Navbar -->
+
+  <!-- Full Page Intro -->
+  <div class="view">
+
+    <video class="video-intro" poster="img/12870.jpg" playsinline autoplay
+      muted loop>
+      <source src="videos/Lines-min.mp4" type="video/mp4">
+    </video>
+
+    <!-- Mask & flexbox options-->
+    <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+
+      <!-- Content -->
+      <div class="text-center white-text mx-5 wow fadeIn">
+
+        <h1 id="app" class="display-4 mb-4">
+          <strong>São mais de {{ articles }} notícias cadastradas.</strong>
+        </h1>
+
+        <h4 class="mb-4">
+          <strong>Faça correlações espúrias e invista nelas!</strong>
+        </h4>
+
+        <h4 class="mb-4">
+          <strong>Melhor que a UFMG.</strong>
+        </h4>
+
+        <a target="_blank" href="observatory.html" class="btn btn-outline-white btn-lg rounded">
+          Vamos lá!
+        </a>
+      </div>
+      <!-- Content -->
+
+    </div>
+    <!-- Mask & flexbox options-->
+
+  </div>
+  <!-- Full Page Intro -->
+
+  <!--Footer-->
+  <footer class="page-footer text-center font-small wow fadeIn">
+    <!--Copyright-->
+    <div class="footer-copyright py-3">
+      <div class="row">
+        <div class="col-0 col-lg-1"></div>
+        <div class="col-12 col-lg-2">
+          Alexander Cristian
+        </div>
+        <div class="col-12 col-lg-2">
+          José Venâncio
+        </div>
+        <div class="col-12 col-lg-2">
+          Matheus Melo
+        </div>
+        <div class="col-12 col-lg-2">
+          Vitor Freire
+        </div>
+        <div class="col-12 col-lg-2">
+          Yan Victor
+        </div>
+        <div class="col0 col-lg-1"></div>
+      </div>
+    </div>
+    <!--/.Copyright-->
+
+  </footer>
+  <!--/.Footer-->
+
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="js/mdb.min.js"></script>
+  <!-- VueJS -->
+  <script type="text/javascript" src="js/vue.js"></script>
+  <!-- Axios -->
+  <script type="text/javascript" src="js/axios.min.js"></script>
+  <!-- Initializations -->
+  <script type="text/javascript">
+    // Animations initialization
+    new WOW().init();
+
+  </script>
+
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        articles: 0
+      },
+      beforeCreate: function () {
+        axios.get('http://186.194.221.240:3000/articles/getNumberOfArticles/').then(response => {
+          this.articles = response.data.count
+        })
+      }
+    })
+  </script>
+</body>
+
+</html>
