@@ -1,5 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const cors = require('cors')
 const mongoose = require('mongoose')
 
 const app = express()
@@ -10,6 +11,7 @@ app.use(
     })
 )
 app.use(bodyParser.json())
+app.use(cors())
 
 mongoose.Promise = global.Promise
 mongoose.connect('mongodb://localhost/telescopia-db', { useNewUrlParser: true, useUnifiedTopology: true })
