@@ -6,24 +6,25 @@ const historySchema = mongoose.Schema({
         required: true
     },
     open: {
-        type: mongoose.Decimal128,
+        type: Number,
         required: true
     },
     close: {
-        type: mongoose.Decimal128,
+        type: Number,
         required: true
     },
     variation: {
-        type: mongoose.Decimal128,
+        type: Number,
         required: true
     },
     max: {
-        type: mongoose.Decimal128,
+        type: Number,
         required: true
     },
     min: {
-        type: mongoose.Decimal128,
-        required: true
+        type: Number,
+        required: false,
+        default: -1.0
     }
 })
 
@@ -65,7 +66,6 @@ exports.newStockHistory = (req, res, next) => {
             }
         }
     })
-    
 }
 
 exports.getAllStocksHistory = (req, res, next) => {
