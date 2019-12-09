@@ -77,3 +77,13 @@ exports.getAllStocksHistory = (req, res, next) => {
             res.status(200).send({ status: 'success', message: stocksHistory })
     })
 }
+
+exports.getStocksNames = (req, res, next) => {
+    stockHistoryModel.find({}, 'name -_id', (err, stocksNames) => {
+        if (err) {
+            res.status(200).send({ status: 'failure' })
+            console.log(err)
+        } else
+            res.status(200).send({ status: 'success', message: stocksNames })
+    })
+}
