@@ -4,7 +4,10 @@ const controller = require('../controllers/stockHistoryController')
 
 router.get('/', controller.getAllStocksHistory)
 router.get('/getStocksNames/', controller.getStocksNames)
-router.get('/getStockDatesByVariationAndName/:name/:variation/', controller.getStockDatesByVariationAndName)
+router.get('/getStockDatesByNameAndVariation/:name/:variation/', controller.getStockDatesByVariationAndName)
+router.get('/getStockDatesByNameAndVariationGreaterThan/:name/:variation/', controller.getStockDatesByNameAndVariationGreaterThan)
+router.get('/getStockDatesByNameAndVariationLessThan/:name/:variation/', controller.getStockDatesByNameAndVariationLessThan)
+router.get('/getStockDatesByNameAndVariationRange/:name/:variationLow/:variationHigh/', controller.getStockDatesByNameAndVariationRange)
 router.put('/newStockHistory/', controller.newStockHistory)
 
 module.exports = router

@@ -105,3 +105,58 @@ exports.getStockDatesByVariationAndName = (req, res, next) => {
             res.status(200).send({ status: 'success', message: stockVariationDates })
     })
 }
+
+exports.getStockDatesByNameAndVariationGreaterThan = (req, res, next) => {
+    let name = req.params.name.toUpperCase()
+    let variation = Number(req.params.variation)
+
+    if (isNaN(variation)) {
+        res.status(200).send({ status: 'failure', message: 'Variação inválida.' })
+        return
+    }
+
+    stockHistoryModel.find({ 'historic.variation': { "$gte": variation }, 'name': name }, 'historic.date -_id' , (err, stockVariationDates) => {
+        if (err) {
+            res.status(200).send({ status: 'failure' })
+            console.log(err)
+        } else
+            res.status(200).send({ status: 'success', message: stockVariationDates })
+    })
+}
+
+exports.getStockDatesByNameAndVariationLessThan = (req, res, next) => {
+    let name = req.params.name.toUpperCase()
+    let variation = Number(req.params.variation)
+
+    if (isNaN(variation)) {
+        res.status(200).send({ status: 'failure', message: 'Variação inválida.' })
+        return
+    }
+
+    stockHistoryModel.find({ 'historic.variation': { "$lt": variation }, 'name': name }, 'historic.date -_id' , (err, stockVariationDates) => {
+        if (err) {
+            res.status(200).send({ status: 'failure' })
+            console.log(err)
+        } else
+            res.status(200).send({ status: 'success', message: stockVariationDates })
+    })
+}
+
+exports.getStockDatesByNameAndVariationRange = (req, res, next) => {
+    let name = req.params.name.toUpperCase()
+    let variationLow = Number(req.params.variationLow)
+    let variationHigh = Number(req.params.variationHigh)
+
+    if (isNaN(variationLow) || isNaN(variationHigh)) {
+        res.status(200).send({ status: 'failure', message: 'Variação(ões) inválida(s).' })
+        return
+    }
+
+    stockHistoryModel.find({ 'historic.variation': { "$gte": variationLow, "$lt": variationHigh }, 'name': name }, 'historic.date -_id' , (err, stockVariationDates) => {
+        if (err) {
+            res.status(200).send({ status: 'failure' })
+            console.log(err)
+        } else
+            res.status(200).send({ status: 'success', message: stockVariationDates })
+    })
+}
