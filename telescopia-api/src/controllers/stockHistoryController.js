@@ -87,3 +87,21 @@ exports.getStocksNames = (req, res, next) => {
             res.status(200).send({ status: 'success', message: stocksNames })
     })
 }
+
+exports.getStockDatesByVariationAndName = (req, res, next) => {
+    let name = req.params.name.toUpperCase()
+    let variation = Number(req.params.variation)
+
+    if (isNaN(variation)) {
+        res.status(200).send({ status: 'failure', message: 'Variação inválida.' })
+        return
+    }
+
+    stockHistoryModel.find({ 'historic.variation': variation, 'name': name }, 'historic.date -_id' , (err, stockVariationDates) => {
+        if (err) {
+            res.status(200).send({ status: 'failure' })
+            console.log(err)
+        } else
+            res.status(200).send({ status: 'success', message: stockVariationDates })
+    })
+}
