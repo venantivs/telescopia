@@ -115,13 +115,21 @@ exports.getStockDatesByNameAndVariationGreaterThan = (req, res, next) => {
         return
     }
 
-    stockHistoryModel.find({ 'historic.variation': { "$gte": variation }, 'name': name }, 'historic.date historic.variation -_id' , (err, stockVariationDates) => {
+    stockHistoryModel.find({ 'historic': { '$elemMatch': { 'variation': { '$gte': variation } } }, 'name': name }, 'historic.date historic.variation -_id' , (err, stockVariationDates) => {
         if (err) {
             res.status(200).send({ status: 'failure' })
             console.log(err)
         } else
             res.status(200).send({ status: 'success', message: stockVariationDates })
     })
+
+    /*stockHistoryModel.find({ 'historic.variation': { "$gte": variation }, 'name': name }, 'historic.date historic.variation -_id' , (err, stockVariationDates) => {
+        if (err) {
+            res.status(200).send({ status: 'failure' })
+            console.log(err)
+        } else
+            res.status(200).send({ status: 'success', message: stockVariationDates })
+    })*/
 }
 
 exports.getStockDatesByNameAndVariationLessThan = (req, res, next) => {
