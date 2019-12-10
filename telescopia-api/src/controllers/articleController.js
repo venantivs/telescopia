@@ -126,6 +126,13 @@ exports.getArticlesByDate = (req, res, next) => {
     })
 }
 
+exports.getArticlesByDates = (req, res, next) => {
+    let dateLow = new Date(req.params.date)
+    let dateHigh = new Date(req.params.date)
+
+    dateHigh.setDate(dateLow.getDate() + 1)
+}
+
 exports.getArticlesByAfterDate = (req, res, next) => {
     let date = new Date(req.params.date)
     articleModel.find({ date: { "$gte": date } }, (err, articles) => {
@@ -165,8 +172,7 @@ exports.getNumberOfArticles = (req, res, next) => {
         if (err) {
             res.status(200).send({ status: 'failure' })
             console.log(err)
-        } else {
+        } else
             res.status(200).send({ status: 'success', count: count })
-        }
     })
 }

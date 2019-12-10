@@ -97,7 +97,7 @@ exports.getStockDatesByVariationAndName = (req, res, next) => {
         return
     }
 
-    stockHistoryModel.find({ 'historic.variation': variation, 'name': name }, 'historic.date -_id' , (err, stockVariationDates) => {
+    stockHistoryModel.find({ 'historic.variation': variation, 'name': name }, 'historic.date historic.variation -_id', (err, stockVariationDates) => {
         if (err) {
             res.status(200).send({ status: 'failure' })
             console.log(err)
@@ -115,7 +115,7 @@ exports.getStockDatesByNameAndVariationGreaterThan = (req, res, next) => {
         return
     }
 
-    stockHistoryModel.find({ 'historic.variation': { "$gte": variation }, 'name': name }, 'historic.date -_id' , (err, stockVariationDates) => {
+    stockHistoryModel.find({ 'historic.variation': { "$gte": variation }, 'name': name }, 'historic.date historic.variation -_id' , (err, stockVariationDates) => {
         if (err) {
             res.status(200).send({ status: 'failure' })
             console.log(err)
@@ -133,7 +133,7 @@ exports.getStockDatesByNameAndVariationLessThan = (req, res, next) => {
         return
     }
 
-    stockHistoryModel.find({ 'historic.variation': { "$lt": variation }, 'name': name }, 'historic.date -_id' , (err, stockVariationDates) => {
+    stockHistoryModel.find({ 'historic.variation': { "$lt": variation }, 'name': name }, 'historic.date historic.variation -_id' , (err, stockVariationDates) => {
         if (err) {
             res.status(200).send({ status: 'failure' })
             console.log(err)
@@ -152,11 +152,21 @@ exports.getStockDatesByNameAndVariationRange = (req, res, next) => {
         return
     }
 
-    stockHistoryModel.find({ 'historic.variation': { "$gte": variationLow, "$lt": variationHigh }, 'name': name }, 'historic.date -_id' , (err, stockVariationDates) => {
+    stockHistoryModel.find({ 'historic.variation': { "$gte": variationLow, "$lt": variationHigh }, 'name': name }, 'historic.date historic.variation -_id' , (err, stockVariationDates) => {
         if (err) {
             res.status(200).send({ status: 'failure' })
             console.log(err)
         } else
             res.status(200).send({ status: 'success', message: stockVariationDates })
+    })
+}
+
+exports.getNumberOfStocksHistories = (req, res, next) => {
+    stockHistoryModel.countDocuments({}, (err, count) => {
+        if (err) {
+            res.status(200).send({ status: 'failure' })
+            console.log(err)
+        } else
+            res.status(200).send({ status: 'success', count: count })
     })
 }

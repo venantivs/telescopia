@@ -8,6 +8,7 @@ router.get('/getStockDatesByNameAndVariation/:name/:variation/', controller.getS
 router.get('/getStockDatesByNameAndVariationGreaterThan/:name/:variation/', controller.getStockDatesByNameAndVariationGreaterThan)
 router.get('/getStockDatesByNameAndVariationLessThan/:name/:variation/', controller.getStockDatesByNameAndVariationLessThan)
 router.get('/getStockDatesByNameAndVariationRange/:name/:variationLow/:variationHigh/', controller.getStockDatesByNameAndVariationRange)
+router.get('/getNumberOfStocksHistories/', controller.getNumberOfStocksHistories)
 router.put('/newStockHistory/', controller.newStockHistory)
 
 module.exports = router
