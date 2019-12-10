@@ -45,6 +45,19 @@ exports.getStockByName = (req, res, next) => {
     })
 }
 
+exports.getStocksNames = (req, res, next) => {
+    stockModel.find({}, 'name -_id', (err, stocksNames) => {
+        if (err) {
+            res.status(200).send({ status: 'failure' })
+            console.log(err)
+        } else
+            if (stocksNames)
+                res.status(200).send({ status: 'success', message: stocksNames })
+            else
+                res.status(200).send({ status: 'failure', message: "Não há ações cadastradas."})
+    })
+}
+
 exports.newStock = (req, res, next) => {
     req.body.name = req.body.name.toUpperCase()
     let stockName = req.body.name

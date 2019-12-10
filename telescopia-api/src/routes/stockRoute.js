@@ -4,6 +4,7 @@ const controller = require('../controllers/stockController')
 
 router.get('/', controller.getAllStocks)
 router.get('/getStock/:stockName/', controller.getStockByName)
+router.get('/getStocksNames/', controller.getStocksNames)
 router.get('/getNumberOfStocks/', controller.getNumberOfStocks)
 router.put('/newStock/', controller.newStock)
 
