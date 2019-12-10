@@ -17,12 +17,12 @@
   <link href="css/style.min.css" rel="stylesheet">
   <style type="text/css">
     .codebox {
-        background-color: #e8e8e8;
+      background-color: #e8e8e8;
+      word-break: break-all;
     }
 
     .string-color {
       color: #003399;
-      word-break: break-all;
     }
   </style>
 </head>
@@ -84,7 +84,7 @@
                 <br>
                 <h5>O telescopia disponibiliza uma API Rest, com Cross-Origin Resource Sharing (CORS) ativado, utilizando o protocolo HTTP para que você mesmo possa manipular os dados em formato JSON, sem interferência deste website.</h5>
                 <div class="codebox p-3 rounded">
-                    GET&nbsp;&nbsp;&nbsp;&nbsp;https://186.194.221.240/
+                    GET&nbsp;&nbsp;&nbsp;&nbsp;<span v-html="ipAddress"></span>
                 </div>
                 <p>Mostra a "introdução" da API, como versão e nome.</p>
                 <div class="codebox p-3 rounded">
@@ -119,31 +119,31 @@
                 <p>Exemplo de retorno dado pela API nesta seção.</b></p>
 
                 <div class="codebox p-3 rounded">
-                    GET&nbsp;&nbsp;&nbsp;&nbsp;https://186.194.221.240/articles/
+                    GET&nbsp;&nbsp;&nbsp;&nbsp;<span v-html="ipAddress"></span>articles/
                 </div>
                 <p>Retorna <b>todas</b> as notícias já cadastradas no banco de dados.</p>
                 <div class="codebox p-3 rounded">
-                    GET&nbsp;&nbsp;&nbsp;&nbsp;https://186.194.221.240/articles/getArticle/:id
+                    GET&nbsp;&nbsp;&nbsp;&nbsp;<span v-html="ipAddress"></span>articles/getArticle/:id
                 </div>
                 <p>Retorna <b>uma</b> notícia, onde <b>:id</b> deve ser subtituído pelo id da notícia.</p>
                 <div class="codebox p-3 rounded">
-                    GET&nbsp;&nbsp;&nbsp;&nbsp;https://186.194.221.240/articles/getArticlesByDate/:date
+                    GET&nbsp;&nbsp;&nbsp;&nbsp;<span v-html="ipAddress"></span>articles/getArticlesByDate/:date
                 </div>
                 <p>Retorna <b>todas</b> notícias publicas na data passada em <b>:date</b>.</p>
                 <div class="codebox p-3 rounded">
-                    GET&nbsp;&nbsp;&nbsp;&nbsp;https://186.194.221.240/articles/getArticlesAfter/:date
+                    GET&nbsp;&nbsp;&nbsp;&nbsp;<span v-html="ipAddress"></span>articles/getArticlesAfter/:date
                 </div>
                 <p>Retorna <b>todas</b> notícias que foram publicadas <b>após</b> a data especificada em <b>:date</b>.</p>
                 <div class="codebox p-3 rounded">
-                    GET&nbsp;&nbsp;&nbsp;&nbsp;https://186.194.221.240/articles/getArticlesBefore/:date
+                    GET&nbsp;&nbsp;&nbsp;&nbsp;<span v-html="ipAddress"></span>articles/getArticlesBefore/:date
                 </div>
                 <p>Retorna <b>todas</b> notícias que foram publicadas <b>até</b> a data especificada em <b>:date</b>.</p>
                 <div class="codebox p-3 rounded">
-                    GET&nbsp;&nbsp;&nbsp;&nbsp;https://186.194.221.240/articles/getArticlesByDateRange/:dateLow/:dateHigh
+                    GET&nbsp;&nbsp;&nbsp;&nbsp;<span v-html="ipAddress"></span>articles/getArticlesByDateRange/:dateLow/:dateHigh
                 </div>
                 <p>Retorna <b>todas</b> notícias que foram publicadas <b>entre</b> as datas especificadas em <b>:dateLow</b> e <b>:dateHigh</b>.</p>
                 <div class="codebox p-3 rounded">
-                    GET&nbsp;&nbsp;&nbsp;&nbsp;https://186.194.221.240/articles/getNumberOfArticles/
+                    GET&nbsp;&nbsp;&nbsp;&nbsp;<span v-html="ipAddress"></span>articles/getNumberOfArticles/
                 </div>
                 <p>Retorna o número de notícias cadastradas no banco de dados.</p>
                 <br>
@@ -172,15 +172,15 @@
                 </div>
                 <p>Exemplo de retorno da API nesta seção.</p>
                 <div class="codebox p-3 rounded">
-                    GET&nbsp;&nbsp;&nbsp;&nbsp;https://186.194.221.240/stocks/
+                    GET&nbsp;&nbsp;&nbsp;&nbsp;<span v-html="ipAddress"></span>stocks/
                 </div>
                 <p>Retorna <b>todas</b> ações cadastradas no banco de dados.</p>
                 <div class="codebox p-3 rounded">
-                    GET&nbsp;&nbsp;&nbsp;&nbsp;https://186.194.221.240/stocks/getStock/:stockName
+                    GET&nbsp;&nbsp;&nbsp;&nbsp;<span v-html="ipAddress"></span>stocks/getStock/:stockName
                 </div>
                 <p>Retorna <b>uma</b> ação pelo seu nome especificado em <b>:stockName</b>.</p>
                 <div class="codebox p-3 rounded">
-                    GET&nbsp;&nbsp;&nbsp;&nbsp;https://186.194.221.240/stocks/getNumberOfStocks/
+                    GET&nbsp;&nbsp;&nbsp;&nbsp;<span v-html="ipAddress"></span>stocks/getNumberOfStocks/
                 </div>
                 <p>Retorna o número de ações cadastradas no banco de dados.</p>
                 <br>
@@ -198,15 +198,15 @@
                 </div>
                 <p>Exemplo de retorno desta seção.</p>
                 <div class="codebox p-3 rounded">
-                  GET&nbsp;&nbsp;&nbsp;&nbsp;https://186.194.221.240/stocks/history/
+                  GET&nbsp;&nbsp;&nbsp;&nbsp;<span v-html="ipAddress"></span>stocks/history/
                 </div>
                 <p>Retorna <b>todas</b> ações e seus respectivos históricos.</p>
                 <div class="codebox p-3 rounded">
-                  GET&nbsp;&nbsp;&nbsp;&nbsp;https://186.194.221.240/stocks/history/getStockHistoryByName/:stockName/
+                  GET&nbsp;&nbsp;&nbsp;&nbsp;<span v-html="ipAddress"></span>stocks/history/getStockHistoryByName/:stockName/
                 </div>
                 <p>Retorna <b>todo</b> o histórico de uma ação, cujo nome deve ser posto em <b>:stockName</b>.</p>
                 <div class="codebox p-3 rounded">
-                  GET&nbsp;&nbsp;&nbsp;&nbsp;https://186.194.221.240/stocks/history/getStockHistoryByDate/:date/
+                  GET&nbsp;&nbsp;&nbsp;&nbsp;<span v-html="ipAddress"></span>stocks/history/getStockHistoryByDate/:date/
                 </div>
                 <p>Retorna o histórico de <b>todas</b> ações para uma determinada data especificada em <b>:date</b>.</p>
             </div>
@@ -262,7 +262,7 @@
     var app = new Vue({
       el: '#app',
       data: {
-        
+        ipAddress: 'http://172.18.5.26:3000/'
       }
     })
   </script>

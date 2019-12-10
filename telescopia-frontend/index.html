@@ -195,21 +195,21 @@
     var app = new Vue({
       el: '#app',
       data: {
-        ipAddress: '186.194.221.240',
+        ipAddress: 'http://172.18.5.26:3000/',
         articles: 0,
         stocks: 0,
         stocksHistories: 0
       },
       mounted: function () {
-        axios.get(`http://${this.ipAddress}:3000/articles/getNumberOfArticles/`).then(response => {
+        axios.get(`${this.ipAddress}articles/getNumberOfArticles/`).then(response => {
           if (response.data.status !== 'success') return
           this.articles = response.data.count
         })
-        axios.get(`http://${this.ipAddress}:3000/stocks/getNumberOfStocks/`).then(response => {
+        axios.get(`${this.ipAddress}stocks/getNumberOfStocks/`).then(response => {
           if (response.data.status !== 'success') return
           this.stocks = response.data.count
         })
-        axios.get(`http://${this.ipAddress}:3000/stocks/history/getNumberOfStocksHistories/`).then(response => {
+        axios.get(`${this.ipAddress}stocks/history/getNumberOfStocksHistories/`).then(response => {
           if (response.data.status !== 'success') return
           this.stocksHistories = response.data.count
         })
