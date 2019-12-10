@@ -8,6 +8,7 @@ router.get('/getArticlesByDate/:date', controller.getArticlesByDate)
 router.get('/getArticlesAfter/:date', controller.getArticlesByAfterDate)
 router.get('/getArticlesBefore/:date', controller.getArticlesByBeforeDate)
 router.get('/getArticlesByDateRange/:dateLow/:dateHigh', controller.getArticlesByDateRange)
+router.get('/getArticleByURL/:url', controller.getArticleByURL)
 router.get('/getNumberOfArticles/', controller.getNumberOfArticles)
 router.put('/newArticle/', controller.newArticle)
 

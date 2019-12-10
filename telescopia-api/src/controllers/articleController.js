@@ -167,6 +167,17 @@ exports.getArticlesByDateRange = (req, res, next) => {
     })
 }
 
+exports.getArticleByURL = (req, res, next) => {
+    let url = req.params.url
+    articleModel.findOne({url : url}, (err, article) => {
+        if (err) {
+            res.status(200).send({ status: 'failure' })
+            console.log(err)
+        } else
+            res.status(200).send({ status: 'success', message: article })
+    })
+}
+
 exports.getNumberOfArticles = (req, res, next) => {
     articleModel.countDocuments({}, (err, count) => {
         if (err) {
