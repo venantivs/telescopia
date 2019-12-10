@@ -97,12 +97,22 @@ exports.getStockDatesByVariationAndName = (req, res, next) => {
         return
     }
 
-    stockHistoryModel.find({ 'historic.variation': variation, 'name': name }, 'historic.date historic.variation -_id', (err, stockVariationDates) => {
+    stockHistoryModel.findOne({ 'name': name }, 'historic.date historic.variation historic.close -_id', (err, stockHistories) => {
         if (err) {
             res.status(200).send({ status: 'failure' })
             console.log(err)
-        } else
-            res.status(200).send({ status: 'success', message: stockVariationDates })
+        } else {
+            if (stockHistories) {
+                if (stockHistories.historic.length > 0) {
+                    let stocksHistoriesByVariation = stockHistories.historic.filter((stockHistory) => {
+                        return stockHistory.variation === variation
+                    })
+                    res.status(200).send({ status: 'success', message: stocksHistoriesByVariation })
+                } else
+                    res.status(200).send({ status: 'success', message: [] })
+            } else
+                res.status(200).send({ status: 'failure', message: "Esta ação/bolsa não está registrada." })
+        }
     })
 }
 
@@ -115,21 +125,23 @@ exports.getStockDatesByNameAndVariationGreaterThan = (req, res, next) => {
         return
     }
 
-    stockHistoryModel.find({ 'historic': { '$elemMatch': { 'variation': { '$gte': variation } } }, 'name': name }, 'historic.date historic.variation -_id' , (err, stockVariationDates) => {
+    stockHistoryModel.findOne({ 'name': name }, 'historic.date historic.variation historic.close -_id' , (err, stockHistories) => {
         if (err) {
             res.status(200).send({ status: 'failure' })
             console.log(err)
-        } else
-            res.status(200).send({ status: 'success', message: stockVariationDates })
+        } else {
+            if (stockHistories) {
+                if (stockHistories.historic.length > 0) {
+                    let stocksHistoriesByVariation = stockHistories.historic.filter((stockHistory) => {
+                        return stockHistory.variation >= variation
+                    })
+                    res.status(200).send({ status: 'success', message: stocksHistoriesByVariation })
+                } else
+                    res.status(200).send({ status: 'success', message: [] })
+            } else
+                res.status(200).send({ status: 'failure', message: "Esta ação/bolsa não está registrada." })
+        }
     })
-
-    /*stockHistoryModel.find({ 'historic.variation': { "$gte": variation }, 'name': name }, 'historic.date historic.variation -_id' , (err, stockVariationDates) => {
-        if (err) {
-            res.status(200).send({ status: 'failure' })
-            console.log(err)
-        } else
-            res.status(200).send({ status: 'success', message: stockVariationDates })
-    })*/
 }
 
 exports.getStockDatesByNameAndVariationLessThan = (req, res, next) => {
@@ -141,12 +153,22 @@ exports.getStockDatesByNameAndVariationLessThan = (req, res, next) => {
         return
     }
 
-    stockHistoryModel.find({ 'historic.variation': { "$lt": variation }, 'name': name }, 'historic.date historic.variation -_id' , (err, stockVariationDates) => {
+    stockHistoryModel.findOne({ 'name': name }, 'historic.date historic.variation historic.close -_id' , (err, stockHistories) => {
         if (err) {
             res.status(200).send({ status: 'failure' })
             console.log(err)
-        } else
-            res.status(200).send({ status: 'success', message: stockVariationDates })
+        } else {
+            if (stockHistories) {
+                if (stockHistories.historic.length > 0) {
+                    let stocksHistoriesByVariation = stockHistories.historic.filter((stockHistory) => {
+                        return stockHistory.variation < variation
+                    })
+                    res.status(200).send({ status: 'success', message: stocksHistoriesByVariation })
+                } else
+                    res.status(200).send({ status: 'success', message: [] })
+            } else
+                res.status(200).send({ status: 'failure', message: "Esta ação/bolsa não está registrada." })
+        }
     })
 }
 
@@ -160,12 +182,22 @@ exports.getStockDatesByNameAndVariationRange = (req, res, next) => {
         return
     }
 
-    stockHistoryModel.find({ 'historic.variation': { "$gte": variationLow, "$lt": variationHigh }, 'name': name }, 'historic.date historic.variation -_id' , (err, stockVariationDates) => {
+    stockHistoryModel.findOne({ 'name': name }, 'historic.date historic.variation historic.close -_id' , (err, stockHistories) => {
         if (err) {
             res.status(200).send({ status: 'failure' })
             console.log(err)
-        } else
-            res.status(200).send({ status: 'success', message: stockVariationDates })
+        } else {
+            if (stockHistories) {
+                if (stockHistories.historic.length > 0) {
+                    let stocksHistoriesByVariation = stockHistories.historic.filter((stockHistory) => {
+                        return stockHistory.variation >= variationLow && stockHistory.variation < variationHigh
+                    })
+                    res.status(200).send({ status: 'success', message: stocksHistoriesByVariation })
+                } else
+                    res.status(200).send({ status: 'success', message: [] })
+            } else
+                res.status(200).send({ status: 'failure', message: "Esta ação/bolsa não está registrada." })
+        }
     })
 }
 
