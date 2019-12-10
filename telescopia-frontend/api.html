@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <link href="favicon.ico" rel="icon" type="image/x-icon" />
   <title>API - Telescopia</title>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
@@ -20,7 +21,8 @@
     }
 
     .string-color {
-      color: #8c0207;
+      color: #003399;
+      word-break: break-all;
     }
   </style>
 </head>
@@ -32,7 +34,7 @@
     <div class="container">
 
       <!-- Brand -->
-      <a class="navbar-brand" href="#" target="_blank">
+      <a class="navbar-brand" href="index.html">
         <strong>Telescopia</strong>
       </a>
 
@@ -62,7 +64,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="" class="nav-link border border-light rounded">
+            <a href="/" class="nav-link border border-light rounded">
               <i class="fas fa-code mr-2"></i>API
             </a>
           </li>
@@ -78,6 +80,8 @@
     <div id="app">
         <div class="container">
             <div class="my-4">
+                <h1>Telescopia API</h1>
+                <br>
                 <h5>O telescopia disponibiliza uma API Rest, com Cross-Origin Resource Sharing (CORS) ativado, utilizando o protocolo HTTP para que você mesmo possa manipular os dados em formato JSON, sem interferência deste website.</h5>
                 <div class="codebox p-3 rounded">
                     GET&nbsp;&nbsp;&nbsp;&nbsp;https://186.194.221.240/
@@ -179,6 +183,32 @@
                     GET&nbsp;&nbsp;&nbsp;&nbsp;https://186.194.221.240/stocks/getNumberOfStocks/
                 </div>
                 <p>Retorna o número de ações cadastradas no banco de dados.</p>
+                <br>
+                <h3><b>Histórico de Ações</b></h3>
+                <p>O sufixo <b>/stocks/history/</b> provê o histórico de ações desde o ano 2000. Neste histórico estão incluídos o valor de abertura, de fechamento, valor mínimo, máximo e a variação, para uma data especificada.</p>
+                <div class="codebox p-3 rounded">
+                  {<br>
+                      &nbsp;&nbsp;&nbsp;&nbsp;<span class="string-color">"status"</span>: <span class="string-color">"success"</span><br>
+                      &nbsp;&nbsp;&nbsp;&nbsp;<span class="string-color">"message"</span>: {<br>
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string-color">"name"</span>: <span class="string-color">"OIBR3"</span>,<br>
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string-color">"historic"</span>: [<br>
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]<br>
+                      &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                  }
+                </div>
+                <p>Exemplo de retorno desta seção.</p>
+                <div class="codebox p-3 rounded">
+                  GET&nbsp;&nbsp;&nbsp;&nbsp;https://186.194.221.240/stocks/history/
+                </div>
+                <p>Retorna <b>todas</b> ações e seus respectivos históricos.</p>
+                <div class="codebox p-3 rounded">
+                  GET&nbsp;&nbsp;&nbsp;&nbsp;https://186.194.221.240/stocks/history/getStockHistoryByName/:stockName/
+                </div>
+                <p>Retorna <b>todo</b> o histórico de uma ação, cujo nome deve ser posto em <b>:stockName</b>.</p>
+                <div class="codebox p-3 rounded">
+                  GET&nbsp;&nbsp;&nbsp;&nbsp;https://186.194.221.240/stocks/history/getStockHistoryByDate/:date/
+                </div>
+                <p>Retorna o histórico de <b>todas</b> ações para uma determinada data especificada em <b>:date</b>.</p>
             </div>
         </div>
     </div>

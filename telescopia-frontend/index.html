@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <link href="favicon.ico" rel="icon" type="image/x-icon" />
   <title>Telescopia</title>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
@@ -68,7 +69,7 @@
     <div class="container">
 
       <!-- Brand -->
-      <a class="navbar-brand" href="#" target="_blank">
+      <a class="navbar-brand" href="/">
         <strong>Telescopia</strong>
       </a>
 
@@ -128,7 +129,7 @@
         </h1>
 
         <h4 class="mb-4">
-          <strong>Faça correlações espúrias e invista nelas, sua MULA!</strong>
+          <strong>Histórico de {{ stocksHistories }} ações e bolsas desde 2000 até 2019.</strong>
         </h4>
 
         <h4 class="mb-4">
@@ -194,15 +195,23 @@
     var app = new Vue({
       el: '#app',
       data: {
+        ipAddress: '186.194.221.240',
         articles: 0,
-        stocks: 0
+        stocks: 0,
+        stocksHistories: 0
       },
-      beforeCreate: function () {
-        axios.get('http://186.194.221.240:3000/articles/getNumberOfArticles/').then(response => {
+      mounted: function () {
+        axios.get(`http://${this.ipAddress}:3000/articles/getNumberOfArticles/`).then(response => {
+          if (response.data.status !== 'success') return
           this.articles = response.data.count
         })
-        axios.get('http://186.194.221.240:3000/stocks/getNumberOfStocks/').then(response => {
+        axios.get(`http://${this.ipAddress}:3000/stocks/getNumberOfStocks/`).then(response => {
+          if (response.data.status !== 'success') return
           this.stocks = response.data.count
+        })
+        axios.get(`http://${this.ipAddress}:3000/stocks/history/getNumberOfStocksHistories/`).then(response => {
+          if (response.data.status !== 'success') return
+          this.stocksHistories = response.data.count
         })
       }
     })

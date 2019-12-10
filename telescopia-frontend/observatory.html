@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <link href="favicon.ico" rel="icon" type="image/x-icon" />
   <title>Observatório - Telescopia</title>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
@@ -12,6 +13,8 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <!-- Material Design Bootstrap -->
   <link href="css/mdb.min.css" rel="stylesheet">
+  <!-- Chart.js -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" rel="stylesheet">
   <!-- Your custom styles (optional) -->
   <link href="css/style.min.css" rel="stylesheet">
   <style type="text/css">
@@ -26,19 +29,17 @@
 </head>
 
 <body>
-
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark unique-color-dark">
     <div class="container">
 
       <!-- Brand -->
-      <a class="navbar-brand" href="#" target="_blank">
+      <a class="navbar-brand" href="index.html">
         <strong>Telescopia</strong>
       </a>
 
       <!-- Collapse -->
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
@@ -74,7 +75,164 @@
 
   <!-- Full Page Intro -->
   <div id="app">
-    eae galera
+    <div class="container-fluid py-4">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"><i class="fas fa-filter"></i>&nbsp;&nbsp;Opções</h5>
+              <div class="row">
+                <div class="col-12 col-lg-2 my-1">
+                  <button type="button" class="btn btn-elegant btn-block" data-toggle="modal" data-target="#stockVariationModal">Notícias pela variação de ação</button>
+                </div>
+                <div class="col-12 col-lg-2 my-1">
+                  <button type="button" class="btn btn-elegant btn-block" data-toggle="modal" data-target="#articlesByKeywordsModal">Notícias por palavra chave</button>
+                </div> 
+                <div class="col-12 col-lg-2 my-1">
+                  <button type="button" class="btn btn-elegant btn-block" v-on:click="currentTab = 'tab-2'">Análise de Tópicos</button>
+                </div> 
+                <div class="col-12 col-lg-2 my-1">
+                  <button type="button" class="btn btn-elegant btn-block">Elegant</button>
+                </div> 
+                <div class="col-12 col-lg-2 my-1">
+                  <button type="button" class="btn btn-elegant btn-block">Elegant</button>
+                </div> 
+                <div class="col-12 col-lg-2 my-1">
+                  <button type="button" class="btn btn-elegant btn-block">Elegant</button>
+                </div> 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <component v-bind:is="currentTabComponent"></component>
+    </div>
+    <!-- Modal Stock Variation -->
+    <div class="modal fade" id="stockVariationModal" tabindex="-1" role="dialog" aria-labelledby="stockVariationModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="stockVariationModalLabel">Pesquisar notícias por variação de ação.</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item" v-on:click="articlesByVariation.searchType = 'equal'">
+                <a class="nav-link active" id="exact-tab" data-toggle="tab" href="#equalArticleByVariation" role="tab" aria-controls="equalArticleByVariation"
+                  aria-selected="true">Exato</a>
+              </li>
+              <li class="nav-item" v-on:click="articlesByVariation.searchType = 'biggerthan'">
+                <a class="nav-link" id="biggerthan-tab" data-toggle="tab" href="#biggerthanArticleByVariation" role="tab" aria-controls="biggerthanArticleByVariation"
+                  aria-selected="false">Maior que</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" v-on:click="articlesByVariation.searchType = 'lessthan'" id="lessthan-tab" data-toggle="tab" href="#lessthanArticleByVariation" role="tab" aria-controls="lessthanArticleByVariation"
+                  aria-selected="false">Menor que</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" v-on:click="articlesByVariation.searchType = 'range'" id="range-tab" data-toggle="tab" href="#rangeArticleByVariation" role="tab" aria-controls="rangeArticleByVariation"
+                  aria-selected="false">Intervalo</a>
+              </li>
+            </ul>
+            <div class="tab-content py-2" id="myTabContent">
+              <div class="tab-pane fade show active" id="equalArticleByVariation" role="tabpanel" aria-labelledby="home-tab">
+                <select class="browser-default custom-select" v-model="articlesByVariation.stockName">
+                  <option selected>Selecione a ação</option>
+                  <option v-for="stockName in stocksNames" v-bind:value="stockName">{{ stockName }}</option>
+                </select>
+                <div class="md-form">
+                  <input type="number" class="form-control" min="0" step="0.01" v-model.number="articlesByVariation.variation">
+                  <label>Variação</label>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="biggerthanArticleByVariation" role="tabpanel" aria-labelledby="profile-tab">
+                <select class="browser-default custom-select" v-model="articlesByVariation.stockName">
+                  <option selected>Selecione a ação</option>
+                  <option v-for="stockName in stocksNames" v-bind:value="stockName">{{ stockName }}</option>
+                </select>
+                <div class="md-form">
+                  <input type="number" class="form-control" min="0" step="0.01" v-model="articlesByVariation.variation">
+                  <label>Variação</label>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="lessthanArticleByVariation" role="tabpanel" aria-labelledby="contact-tab">
+                <select class="browser-default custom-select" v-model="articlesByVariation.stockName">
+                  <option selected>Selecione a ação</option>
+                  <option v-for="stockName in stocksNames" v-bind:value="stockName">{{ stockName }}</option>
+                </select>
+                <div class="md-form">
+                  <input type="number" class="form-control" min="0" step="0.01" v-model="articlesByVariation.variation">
+                  <label>Variação</label>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="rangeArticleByVariation" role="tabpanel" aria-labelledby="contact-tab">
+                <select class="browser-default custom-select" v-model="articlesByVariation.stockName">
+                  <option selected>Selecione a ação</option>
+                  <option v-for="stockName in stocksNames" v-bind:value="stockName">{{ stockName }}</option>
+                </select>
+                <div class="md-form">
+                  <input type="number"class="form-control" min="0" step="0.01" v-model="articlesByVariation.variationFloor">
+                  <label>Variação maior</label>
+                </div>
+                <div class="md-form">
+                  <input type="number"class="form-control" min="0" step="0.01" v-model="articlesByVariation.variationCeil">
+                  <label>Variação menor</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" v-on:click="currentTab = 'articlesByVariation-tab'">Pesquisar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal Keywords Articles -->
+    <div class="modal fade" id="articlesByKeywordsModal" tabindex="-1" role="dialog" aria-labelledby="articlesByKeywordsModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="articlesByKeywordsModalLabel">Pesquisar notícias por palavras chave.</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item" v-on:click="articlesByVariation.searchType = 'equal'">
+                <a class="nav-link active" id="title-tab" data-toggle="tab" href="#titleArticleByKeyword" role="tab" aria-controls="titleArticlesByKeywords"
+                  aria-selected="true">Título</a>
+              </li>
+              <li class="nav-item" v-on:click="articlesByVariation.searchType = 'biggerthan'">
+                <a class="nav-link" id="body-tab" data-toggle="tab" href="#bodyArticleByKeyword" role="tab" aria-controls="bodyArticleByKeywords"
+                  aria-selected="false">Corpo</a>
+              </li>
+            </ul>
+            <div class="tab-content py-2" id="myTabContent">
+              <div class="tab-pane fade show active" id="titleArticleByKeyword" role="tabpanel" aria-labelledby="home-tab">
+                <div class="md-form">
+                  <input type="text" class="form-control">
+                  <label>Título</label>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="bodyArticleByKeyword" role="tabpanel" aria-labelledby="profile-tab">
+                <div class="md-form">
+                  <input type="text" class="form-control">
+                  <label>Corpo</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" v-on:click="currentTab = 'articlesByKeywords-tab'">Pesquisar</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <!-- Full Page Intro -->
 
@@ -120,14 +278,231 @@
   <script type="text/javascript" src="js/vue.js"></script>
   <!-- Axios -->
   <script type="text/javascript" src="js/axios.min.js"></script>
+  <!-- Chart.js -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+  <script type="text/javascript" src="js/utils.js"></script>
   <!-- VueJS Script -->
   <script>
+    Vue.component('home-tab', {
+      template: `<h1 class="mt-4">Selecione uma das opções acima.</h1>`
+    })
+
+    Vue.component('articlesByVariation-tab', {
+      data: function () {
+        return {
+          dates: [],
+          articles: [],
+          cotations: []
+        }
+      },
+      template: `<div class="row mt-4">
+        <div class="col-12 col-lg-5">
+          <div class="card">
+            <div class="card-header">
+              Gráfico
+            </div>
+            <div class="card-body">
+              <canvas id="myChart" width="400" height="400"></canvas>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-7">
+          <div class="card">
+            <div class="card-header">
+              Notícias
+            </div>
+            <div class="card-body">
+              <h3>Variação: {{  }}</h3>
+              <table class="table">
+                <thead class="black white-text">
+                  <tr>
+                    <th scope="col">Título</th>
+                    <th scope="col">Data</th>
+                    <th scope="col">Portal</th>
+                    <th scope="col">Link</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="article in articles">
+                    <td>{{ article.title }}</td>
+                    <td>{{ new Date(article.date).toLocaleDateString() }}</td>
+                    <td>{{ article.portal_name }}</td>
+                    <td><a class="btn btn-primary" v-bind:href="article.url">Acessar</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>`,
+      mounted: function() {
+        axios.get(`http://186.194.221.240:3000/stocks/history/getStockDatesByNameAndVariationGreaterThan/${app.articlesByVariation.stockName}/${app.articlesByVariation.variation}/`).then(response => {
+          if (response.data.status !== 'success') return
+          if (response.data.message.length <= 0) return
+
+          console.log(response.data.message)
+
+          this.dates = response.data.message.map((stockDate) => {
+            return stockDate.date
+          })
+
+          this.cotations = response.data.message.map((stockCotation) => {
+            return stockCotation.close
+          })
+
+          this.loadGraph()
+
+          console.log(this.cotations)
+
+          const waitFor = (ms) => new Promise(r => setTimeout(r, ms));
+          this.dates.forEach(async (date) => {
+            axios.get(`http://${app.ipAddress}:3000/articles/getArticlesByDate/${date}/`).then(articles => {
+              if (articles.data.status !== 'success') return
+              if (articles.data.message.length === 0) return
+              this.articles = articles.data.message
+            })
+            //console.log(this.articles)
+            await waitFor(1000)
+          })
+        })
+      },
+      methods: {
+        loadGraph: function () {
+          var ctx = document.getElementById('myChart');
+          var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+              labels: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+              datasets: [{
+                label: 'Interpolação Linear',
+                data: this.cotations,
+                borderColor: window.chartColors.green,
+                backgroundColor: 'rgba(0, 0, 0, 0)',
+                fill: false,
+                lineTension: 0
+              }]
+            },
+            options: {
+              responsive: true,
+              title: {
+                display: true,
+                text: 'Variação das Cotações'
+              },
+              tooltips: {
+                mode: 'index'
+              },
+              scales: {
+                xAxes: [{
+                  display: true,
+                  scaleLabel: {
+                    display: true
+                  }
+                }],
+                yAxes: [{
+                  display: true,
+                  scaleLabel: {
+                    display: true,
+                    labelString: 'Valor (US$)'
+                  },
+                  ticks: {
+                    suggestedMin: -10,
+                    suggestedMax: 200,
+                  }
+                }]
+              }
+            }
+          });
+        }
+      }
+    })
+
+    Vue.component('articlesByKeywords-tab', {
+      data: function () {
+        return {
+          articles: []
+        }
+      },
+      template: `<div class="row mt-4">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              Notícias
+            </div>
+            <div class="card-body">
+              <h3>Variação: {{  }}</h3>
+              <table class="table">
+                <thead class="black white-text">
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Título</th>
+                    <th scope="col">Data</th>
+                    <th scope="col">Portal</th>
+                    <th scope="col">Link</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="(article, index) in articles">
+                    <th scope="row">{{ index }}</th>
+                    <td>{{ article.title }}</td>
+                    <td>{{ article.date }}</td>
+                    <td>{{ article.portal_name }}</td>
+                    <td><a class="btn btn-primary" v-bind:href="article.url">Acessar</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>`,
+      mounted: function() {
+        axios.get(`http://${app.ipAddress}:3000/stocks/history/getStocksNames/`).then(response => {
+          this.stocksNames = response.data.message.map((stock) => {
+            return stock.name
+          })
+        })
+      }
+    })
+
+    Vue.component('topicAnalysis-tab', {
+      template: '<iframe></iframe>'
+    })
+
     var app = new Vue({
       el: '#app',
       data: {
-        
+        ipAddress: '186.194.221.240',
+        currentTab: 'home-tab',
+        tabs: ['home-tab', 'articlesByVariation-tab', 'articlesByKeywords-tab', 'topicAnalysis-tab'],
+        stocksNames: [],
+        articlesByVariation: {
+          searchType: '',
+          stockName: 'Selecione a ação',
+          variation: 0.0,
+          variationFloor: 0.0,
+          variationCeil: 0.0
+        },
+        articlesByKeyWord: {
+          searchType: '',
+          title: '',
+          body: ''
+        }
+      },
+      beforeCreate: function () {
+        axios.get('http://186.194.221.240:3000/stocks/history/getStocksNames/').then(response => {
+          this.stocksNames = response.data.message.map((stock) => {
+            return stock.name
+          })
+        })
+      },
+      computed: {
+        currentTabComponent: function () {
+          return this.currentTab
+        }
       }
-    })
+    })    
+  </script>
+  <!-- Initialization Script -->
+  <script>
   </script>
 </body>
 
