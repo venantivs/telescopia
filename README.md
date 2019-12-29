@@ -13,10 +13,10 @@ It consists in two main parts:
 
 As the observatory functions, there are 4:
 
-* Articles by a stock variation
-* Articles by keywords (tf-idf)
-* Topic Analysis
-* Articles by cited stock
+* Notícias pela variação de ação (Articles by stock variation)
+* Notícias por palavra chave (Articles by keywords)
+* Análise de tópicos (Topic analysis)
+* Notícias por ações citadas (Articles by cited stock)
 
 #### Articles by a stock variation
 This function will return, once given a stock name (already in the database), a variation number and a preset comparison operator, all the dates where the selected stock had the (exact, bigger than, less than, range) given variation. Once the dates are retrieved, the API returns all the articles that were published in those retrieved dates. Also, a graph is displayed showing all the dates and it's variation of the selected stock.
@@ -63,7 +63,7 @@ Then, to run in development mode:
 npm start
 ```
 
-**Disclaimer**: To run the API in production mode, it was used the PM2 package.
+**Disclaimer**: To run the API in production mode, you can use the PM2 package.
 
 #### Frontend Application
 The frontend application is made out of pure HTML5, CSS and JavaScript libraries, therefore, you won't need nothing but a Code Editor and a Browser to develop it.
