@@ -22,10 +22,10 @@ As the observatory functions, there are 4:
 This function will return, once given a stock name (already in the database), a variation number and a preset comparison operator, all the dates where the selected stock had the (exact, bigger than, less than, range) given variation. Once the dates are retrieved, the API returns all the articles that were published in those retrieved dates. Also, a graph is displayed showing all the dates and it's variation of the selected stock.
 
 #### Articles by keywords
-This function **WAS NOT** implemented, but UAHEUAHEUHAEU.
+This function **WAS NOT** implemented, but was intended to be made using tf-idf method, returning articles ranked by the presence of the given keyword.
 
 #### Topic Analysis
-
+----
 
 #### Articles by cited stock
 Once given a stock, that was previously registered in the database, all the articles that have cited the stock name are listed, showing the article title, publish date, portal name and a link to the original article. 
