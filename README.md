@@ -4,6 +4,13 @@
 
 Telescopia is a web observatory for the stock market. It was made for the Databases class lectured by Dr. Leonardo Rocha in 2019/2 period of Computing Science at the Federal University of São João del-Rei.
 
+The main goal of the project was to deal with large amounts of data, therefore non-relational databases should be used.
+
+It consists in two main parts:
+
+* **REST API**
+* **Frontend application**
+
 As the observatory functions, there are 4:
 
 * Articles by a stock variation
@@ -22,14 +29,6 @@ This function **WAS NOT** implemented, but UAHEUAHEUHAEU.
 
 #### Articles by cited stock
 Once given a stock, that was previously registered in the database, all the articles that have cited the stock name are listed, showing the article title, publish date, portal name and a link to the original article. 
-
-
-The main goal of the project was to deal with large amounts of data, therefore non-relational databases should be used.
-
-It consists in three main parts:
-
-* **REST API**
-* **Frontend application**
 
 ### Technologies
 For the development of the API, it was used:
