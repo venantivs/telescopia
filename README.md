@@ -44,6 +44,7 @@ For the frontend application:
 
 * Material Design for Bootstrap 4
 * Vue.js 2
+* Axios
 * Chart.js
 * Font Awesome
 * Coming Soon Free MDBoostrap Template (index page)
